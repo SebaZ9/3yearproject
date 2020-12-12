@@ -1,0 +1,97 @@
+﻿<html>
+
+	<head>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+		<link type="text/css" rel="stylesheet" href="css/nouislider.css"/>
+
+	</head>
+
+	<body>
+		<div style= "padding-top:50px;">
+			<div class="row container">
+				<div class="col s6">
+					<div id="Devices" class="input-field">
+						<select>
+							<option value="1">Heating</option>
+							<option value="2">Air Conditioning</option>
+						</select>
+           				<label for="devices">Option</label>
+          			</div>
+				  	</div>
+				 	<div class="col s3">
+						<a id="offBtn" class="waves-effect waves-light btn-large disabled" style="width: 100%;" onclick="SetDevice(0)">OFF</a>
+					</div>
+					<div class="col s3" >
+						<a id="onBtn" class="waves-effect waves-light btn-large" style="width: 100%;" onclick="SetDevice(1)">ON</a>
+					</div>
+					<a id="UpdateButton" class="waves-effect waves-light btn-large col s12">Update Climate Times </a>
+        	</div>
+        </div>
+
+		
+				
+		<div>
+		<div class = "row container">
+			<h5>Monday</h5>
+			<div id = "monday-slider"></div>
+			<div style = "padding-top:50px"><span>Set time from </span><span id = "startTimeMon"></span><span> to </span><span id = "finishTimeMon"></span></div>
+			<div id = "monVals"></div>
+
+
+			<h5>Tuesday</h5>
+			<div id = "tuesday-slider"></div>
+			<div style = "padding-top:50px"><span>Set time from </span><span id = "startTimeTues"></span><span> to </span><span id = "finishTimeTues"></span></div>
+			<div id = "tuesVals"></div>
+		
+
+		<h5>Wednesday</h5>
+			<div id = "wednesday-slider"></div>
+			<div style = "padding-top:50px"><span>Set time from </span><span id = "startTimeWed"></span><span> to </span><span id = "finishTimeWed"></span></div>
+		
+		
+
+		<h5>Thursday</h5>
+			<div id = "thursday-slider" ></div>
+			<div style = "padding-top:50px"><span>Set time from </span><span id = "startTimeThurs"></span><span> to </span><span id = "finishTimeThurs"></span></div>
+
+		
+
+		<h5>Friday</h5>
+			<div id = "friday-slider" ></div>
+			<div style = "padding-top:50px"><span>Set time from </span><span id = "startTimeFri"></span><span> to </span><span id = "finishTimeFri"></span></div>
+
+		
+
+		<h5>Saturday</h5>
+			<div id = "saturday-slider" ></div>
+			<div style = "padding-top:50px"><span>Set time from </span><span id = "startTimeSat"></span><span> to </span><span id = "finishTimeSat"></span></div>
+
+		
+		<h5>Sunday</h5>
+			<div id = "sunday-slider" ></div>
+			<div style = "padding-top:50px"><span>Set time from </span><span id = "startTimeSun"></span><span> to </span><span id = "finishTimeSun"></span></div>
+
+		
+		</div>
+		</div>
+		<a id="help" class="btn-large btn-floating" ><i class="material-icons">help_outline</i></a>
+
+		<div class="tap-target" data-target="help">
+			<div class="tap-target-content">
+				<p>Choose whether you would like to adjust the heating or AC from the dropdown list.</p>
+				<p>Schedule the device by dragging across a time period in each row, representing a day.</p>
+				<p>Use this feature to time your utilities appropriately while saving money and energy.</p>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/materialize.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript" src="js/help.js"></script>
+		<script type="text/javascript" src="js/climateControl.js"></script>
+		<script type="text/javascript" src="js/nouislider.js"></script>
+
+	</body>
+
+</html>

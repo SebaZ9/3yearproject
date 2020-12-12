@@ -1,0 +1,64 @@
+﻿<html>
+
+	<head>
+		<title>Röost</title>
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>    
+		<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+		<link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
+		
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta charset="utf-8"/>
+		<meta name="description" content="The simple and intuitive way to interact with your smarthome!"/>
+		<meta name="authors" content="Oliver Brotchie" />
+		<meta name="keywords" content="smart_device,home,energy saving,eco-friendly,internet_of_things"/>
+		<meta name="robots" content="index, follow"/>
+		
+		
+	</head>
+
+	<body>
+
+		<nav>
+			<div class="nav-wrapper z-depth-1v">
+				<a href="index.html" class="brand-logo center title">Röost</a>
+				<ul class="left">
+					<li><a data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+				</ul>
+				<ul class="right">
+					<li><a onclick="if(accountInfo.accountType){location.replace('/login')}else{M.toast({html: 'Logged out!', classes: 'rounded'});location.replace('/logout');}" ><i class="material-icons">account_circle</i></a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="sidenav sidenav-fixed center" id="mobile-nav">
+			<div class="flex-exclude">
+				<img class="logo"  src="media/roost_white.png">
+			</div>
+            <ul class="sidenav-links">	
+                <li><a class="content-loader"><i class="material-icons">home</i>Home</a></li>
+                <li><a class="content-loader"><i class="material-icons">bubble_chart</i>Stats</a></li>
+                <li><a class="content-loader"><i class="material-icons">wb_sunny</i>Solar</a></li>
+                <li><a class="content-loader"><i class="material-icons">power</i>Devices</a></li>
+                <li><a class="content-loader"><i class="material-icons">fireplace</i>Climate Control</a></li>
+                <li><a class="content-loader"><i class="material-icons">settings</i>Settings</a></li>
+            </ul>
+		</div>
+
+
+		<div class="hide-on-med-and-down login-btn">
+			<a class=" btn-floating btn-large">
+				<i class="large material-icons" onclick="if(accountInfo.accountType){location.replace('/login')}else{location.replace('/logout')}" >account_circle</i>
+			</a>
+		</div>
+		
+		<div id="content"></div>
+
+		<script type="text/javascript" src="js/materialize.js"></script>
+		<script type='text/javascript' src="https://wurfl.io/wurfl.js"></script>
+		<script type="text/javascript" src="js/javascript.js"></script>
+	</body>
+</html>

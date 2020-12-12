@@ -1,0 +1,208 @@
+﻿<html>
+
+	<head>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+
+	<!-- Main Page Body -->
+	<body>
+		<div class="container" style= "padding-top:50px;">
+			<div class="row">
+				<table class="highlight">
+					<thead>
+						<tr>
+							<th>Device Name</th>
+							<th>Room</th>
+							<th>Power Usage (kWh per day)</th>
+						</tr>
+					</thead>
+				
+					<tbody id="devices-list">
+					<!-- 
+						Items go here
+					-->
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<a id = "button" class="btn-floating waves-effect waves-light right modal-trigger" href="#add-device-modal" onclick="UpdateAddDeviceModal()" style="margin-top:10px;"><i class="material-icons">add</i></a>
+			</div>
+		</div>
+
+		<!-- Add Device Modal --> 
+		<div id="add-device-modal" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>Add New Device</h4>
+				<div class="row">
+					<div class="input-field col l-6 m-6 s-12">
+						<input id="device_name" type="text" class="validate">
+						<label for="device_name">Device Name</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col l-6 m-6 s-12">
+						<input id="device_pusage" type="number" class="validate">
+						<label for="device_pusage">Power Usage (kWh per day)</label>
+					</div>
+				</div>
+				<div class="row" >
+					<form action="#" id="rooms">
+					</form>
+				</div>				
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+				<a href="#!" id = "button" class="modal-close waves-effect waves-green btn-flat" onclick="Submit()">Add</a>
+			</div>
+		</div>
+
+		<!-- Manage Device Modal -->
+		<div id="manage-device-modal" class="modal device" style="height:100%;width:90%">
+			<div class="modal-content">
+				<div id="status_colour" class="card-panel red lighten-2"> <!--  -->
+					<div>
+						<h4 id="modal_device_status" style="float: right;">device_status</h4>
+						<h4 id="modal_device_name">device_name</h4>
+						<h6 id="modal_device_group">device_group</h6>
+					</div>			
+				</div>
+				<!-- Tabs Outer -->
+				<div class="row">
+					<div class="col s12">
+						<ul id="tabs" class="tabs">
+							<li class="tab col s6"><a class="active" href="#interactions">Previous Interactions</a></li>
+							<li class="tab col s6"><a href="#schedule">Schedule</a></li>
+						</ul>
+					</div>
+					<!-- Schedule Tab -->
+					<div id="schedule" class="col s12">
+						<table>
+							<div class="row">
+								<div class="col s12">
+									<!-- <ul id="tabsinner" class="tabs"> -->
+											<tr>
+												<td>
+													<ul id="tabsinner" class="tabs col s12">
+														<li class="tab col s6"><a id="oninactive" class="active" href="#onin">Turn on in...</a></li>
+														<li class="tab col s6"><a id="onatactive" href="#onat">Turn on at...</a></li>
+													</ul>
+												</td>
+												<td>
+													<ul id="tabsinner2" class="tabs col s12">
+														<li class="tab col s6"><a id="offinactive" class="active" href="#offin">Turn off after...</a></li>
+														<li class="tab col s6"><a id="offatactive" href="#offat">Turn off at...</a></li>
+													</ul>
+												</td>
+											</tr>
+									<!-- </ul> -->
+								</div>
+								<!-- Tab1 -->
+								<tr>
+									<td>
+										<div id="onin" class="col s12">
+											<div class="input-field">
+												<input id="oninhours" type="number" min="0" class="validate">
+												<label for="oninhours">Hours</label>
+											</div>
+											<div class="input-field">
+												<input id="oninminutes" type="number" min="0" class="validate">
+												<label for="oninminutes">Minutes</label>
+											</div>
+										</div>
+										<!-- Tab2 -->
+										<div id="onat" class="input-field">
+											<input id="onattime" type="text" class="timepicker">
+											<label for="onattime">Select Time</label>
+										</div>
+									</td>
+									<td>
+										<!-- Tab3 -->
+										<div id="offin" class="col s12">
+											<div class="input-field">
+												<input id="offinhours" type="number" min="0" class="validate">
+												<label for="offinhours">Hours</label>
+											</div>
+											<div class="input-field">
+												<input id="offinminutes" type="number" min="0" class="validate">
+												<label for="offinminutes">Minutes</label>
+											</div>
+										</div>
+										<!-- Tab4 -->
+										<div id="offat" class="input-field">
+											<input id="offattime" type="text" class="timepicker">
+											<label for="offattime">Select Time</label>
+										</div>
+									</td>
+								</tr>
+							</div>
+						</table>
+						<button id = "scheduleButton" class="btn waves-effect" onclick="SendSchedule()" style="float: right;">
+							<icon class="material-icons">done</icon>
+						</button>
+						<div id="curSchedule" class="col s12">
+							<div class="row">
+								<table class="highlight">
+									<thead>
+										<tr>
+											<th>On At</th>
+											<th>Off At</th>
+										</tr>
+									</thead>					
+									<tbody id="curSchedule-display">
+									<!-- 
+										Schedule goes here
+									-->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- Previous interactions Tab -->
+					<div id="interactions" class="col s12">
+						<div class="row">
+							<table class="highlight">
+								<thead>
+									<tr>
+										<th>User</th>
+										<th>Turned On</th>
+										<th>Turned Off</th>
+									</tr>
+								</thead>					
+								<tbody id="interaction-list">
+								<!-- 
+									Items go here
+								-->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer" style="position: absolute; bottom: 0;">
+				<div class="divider" style="margin-top:0px"></div>				
+				<a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="RemoveDevice()" style="float: left;" >Forget Device</a>
+				<a id="modal_device_toggle" href="#!" class="modal-close waves-effect btn-flat" style="float: right;" onclick="ToggleStatus()">toggle_device</a>				
+			</div>
+		</div>
+
+		<a id="help" class="btn-large btn-floating" ><i class="material-icons">help_outline</i></a>
+
+		<div class="tap-target" data-target="help">
+			<div class="tap-target-content">
+				<p>View more details on each device by clicking on the device name in the list.</p>
+				<p>Add your devices to the system by clicking the plus button and filling in the details.</p>
+				<p>Use this feature to track your device usage and usage in each room of the house.</p>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript" src="js/materialize.js"></script>
+		<script type="text/javascript" src="js/Database_Scripts.js"></script>
+		<script type="text/javascript" src="js/help.js"></script>
+
+
+	</body>
+
+</html>

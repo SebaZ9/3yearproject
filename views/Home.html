@@ -1,0 +1,60 @@
+﻿<html>
+
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+    </head>
+
+    <body>
+        <div style='padding-top:50px'>
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <div class="center-align"><span id="welcome"></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col l6 m6 s12">
+                <div id="donutchart" style="height:400px;width:100%" class="left-align"></div>
+            </div>
+            <div class="col l6 m6 s12">
+                <div id="donutchart2" style="height:400px;width:100%" class="right-align"></div>
+            </div>
+        </div>
+        
+        <div class='container'>
+            <div class="divider"></div>
+            <div class="row">
+
+                <div class='col s12 m4 id-selectors'>
+                    <h5>Devices:</h5>
+                    There are currently <div id='numberOfDevices'></div> devices running.<br>
+                    They are using <div id='powerUsage'></div>, which will cost you about <div id='cost'></div> per day.
+                </div>
+
+                <div class='col s12 m4 id-selectors'>
+                    <h5>Climate Control:</h5>
+                    Air Conditioning is currently <div id='airCon'></div><br>
+                    The heating is currently <div id='heating'></div><br>
+                </div>
+
+                <div class='col s12 m4 id-selectors'>
+                    <h5>Solar Power:</h5>
+                    You have generated <div id='power'></div> which will have saved you about <div id='savings'></div><br>
+                   
+                </div>
+            
+            </div>
+            <div class="divider"></div>
+        </div>
+
+
+        </div>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="js/home.js"></script>
+    </body>
+
+</html>

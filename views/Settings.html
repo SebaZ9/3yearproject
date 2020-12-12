@@ -1,0 +1,271 @@
+﻿<html>
+
+	<head>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+	</head>
+
+	<body>
+		<div style="padding-top:50px;">
+		</div>
+		<h3 class = "center-align">Current Users</h3>
+		<div class="container" style= "padding-top:50px;">
+			<div class="row">
+				<table class="highlight">
+					<thead>
+						<tr>
+							<th scope="col">User ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Surname</th>
+							<th scope="col">Username</th>
+							<th scope="col">Account Type</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+				
+					<tbody id="usersBody">
+					<!-- 
+						Items go here
+					-->
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<a id = "button" class="btn-floating waves-effect waves-light right modal-trigger" href="#add-user-modal" onclick="newUserForm.reset();document.getElementById('warning').innerHTML = '';" style="margin-top:10px;"><i class="material-icons">add</i></a>
+			</div>
+		</div>
+		<hr style="width:80%">
+		<h3 class = "center-align">Current Rooms</h3>
+		<div class="container" style= "padding-top:50px;">
+			<div class="row">
+				<table class="highlight">
+					<thead>
+						<tr>
+							<th scope="col">Room ID</th>
+							<th scope="col">Room Name</th>
+							<th scope="col">Action</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+				
+					<tbody id="roomsBody">
+					<!-- 
+						Items go here
+					-->
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<a id = "button" class="btn-floating waves-effect waves-light right modal-trigger" href="#add-room-modal"><i class="material-icons">add</i></a>
+			</div>
+		</div>
+
+		<!-- Add user modal -->
+		<div id="add-user-modal" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<div class="form">
+      
+					<ul class="top-area">
+					  <h3 class="tab active center-align">Create a new account</h3>
+					</ul>
+				
+					<div id="signup">   
+					  <div class="flex-exclude center-align">
+						<img class="logo"  src="media/roost_black.png">
+					  </div>
+
+					  <div class="center-align">
+						<h6 id="warning" class="red-text"></h6>
+					  </div>
+						  
+					  <form id="newUserForm" action="/register" method="post">
+						<input id="fname" name="fname" type="text" required autocomplete="off" placeholder="First Name"/>
+						<input id="lname" name="lname" type="text"required autocomplete="off" placeholder="Last Name"/>
+						<input id="username" name="username" type="text"required autocomplete="off" placeholder="Username"/>
+						<input id="pass" name="password" type="password"required autocomplete="off" placeholder="Password"/>
+						<input id="pass2" type="password" required autocomplete="off" placeholder="Re-enter Password"/>
+					  </form>
+					</div>  
+				  </div>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+				<a href="#!" class="waves-effect btn-flat" onclick="CheckInput();">Add User</a>
+			</div>
+		</div>
+
+		<!-- Add room modal -->	
+		<div id="add-room-modal" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<ul class="top-area">
+					<h3 class="tab active center-align">Create a new room</h3>
+				  </ul>
+				<form id="newRoomForm" action="/rooms" method="post">
+					<input id="room" name="room" type="text" required autocomplete="off" placeholder="Room Name"/>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+				<a href="#!" class="waves-effect btn-flat" onclick="addRoom(); ">Add Room</a>
+			</div>
+		</div>
+
+		<!-- Edit user modal -->
+		<div id="edit-user-modal" class="modal modal-fixed-footer" style="overflow: hidden;">
+			<div class="modal-content">
+				<h3> Edit User </h3>
+				<table class="striped centered">			
+					<tbody id="editUserBody">
+					  <tr>
+						<td>ID</td>
+						<td id="accID">-</td>
+						<td><button class='waves-effect waves-light btn disabled'><i class=' material-icons'>edit</i></button></td>
+					 </tr>
+					 <tr>
+						 <td>Username</td>
+						 <td id="accUname">-</td>
+						 <td><button class='waves-effect waves-light btn disabled'><i class=' material-icons'>edit</i></button></td>
+					 </tr>
+					 <!-- Name -->
+					  <tr>
+						<td>Name</td>
+						<td id="accName">-</td>
+						<td id="accNameInput" hidden>
+							<div class="input-field col s6">
+								<input id="firstname" type="text" class="validate">
+								<label for="firstname">Name</label>
+							  </div>
+						</td>
+						<td>
+							<div id="accNameEdit">
+								<button class='waves-effect waves-light btn' onclick="ChangeFields(0)"><i class=' material-icons'>edit</i></button>						
+							</div>
+							<div id="accNameConfirm" hidden>
+								<table class="responsive-table">
+									<tr>
+										<td>
+											<button class='waves-effect waves-light btn' style="margin-right:5px;"  onclick="EditAccount(document.getElementById('firstname').value,'name'); ChangeFields(0);"><i class=' material-icons'>done</i></button>
+										</td>
+										<td>
+											<button class='waves-effect waves-light btn' onclick="ChangeFields(0)"><i class=' material-icons'>cancel</i></button>
+										</td>
+									</tr>
+								</table>
+							</div>
+					  </tr>
+					  <!-- Surname -->
+					  <tr>
+						<td>Surname</td>
+						<td id="accSname">-</td>
+						<td id="accSnameInput" hidden>
+							<div class="input-field col s6">
+								<input id="surname" type="text" class="validate">
+								<label for="surname">Surname</label>
+							  </div>
+						</td>
+						<td>
+							<div id="accSnameEdit">
+								<button class='waves-effect waves-light btn' onclick="ChangeFields(1)"><i class=' material-icons'>edit</i></button>						
+							</div>
+							<div id="accSnameConfirm" hidden>
+								<table class="responsive-table">
+									<tr>
+										<td>
+											<button class='waves-effect waves-light btn' style="margin-right:5px;"  onclick="EditAccount(document.getElementById('surname').value, 'lname'); ChangeFields(1);"><i class=' material-icons'>done</i></button>
+										</td>
+										<td>
+											<button class='waves-effect waves-light btn' onclick="ChangeFields(1)"><i class=' material-icons'>cancel</i></button>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<!-- Password -->
+					<tr>
+						<td>Password</td>
+						<td id="accPass">******</td>
+						<td id="accPassInput" hidden>
+							<div class="row">
+								<div id="passWarning" class="red-text" hidden>
+									<p>The entered passwords do not match!</p>
+								</div>
+								<div class="input-field">
+									<input id="password1" type="password" class="validate">
+									<label for="password1">New Password</label>
+								</div>
+								<div class="input-field">
+									<input id="password2" type="password" class="validate">
+									<label for="password2">Re-enter Password</label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div id="accPassEdit">
+								<button class='waves-effect waves-light btn' onclick="ChangeFields(2)"><i class=' material-icons'>edit</i></button>						
+							</div>
+							<div id="accPassConfirm" hidden>
+								<table class="responsive-table">
+									<tr>
+										<td>
+											<button class='waves-effect waves-light btn' style="margin-right:5px;"  onclick="CheckPassEdit();"><i class=' material-icons'>done</i></button>
+										</td>
+										<td>
+											<button class='waves-effect waves-light btn' onclick="ChangeFields(2)"><i class=' material-icons'>cancel</i></button>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<!-- Account Type -->
+					<tr>
+						<td>Account Type</td>
+						<td>
+							<p id="accType">-</p>
+							<div id="accTypeInput" hidden>
+								<!-- Dropdown Trigger -->
+								<a class='dropdown-trigger btn' href='#' data-target='dropdown1' id="selecttype"></a>
+								<!-- Dropdown Structure -->
+								<ul id='dropdown1' class='dropdown-content'>
+									<li><a href="#!" onclick="document.getElementById('selecttype').innerHTML = 'Normal'">Normal</a></li>
+									<li><a href="#!" onclick="document.getElementById('selecttype').innerHTML = 'Admin'">Admin</a></li>
+								</ul>
+							</div>
+						</td>						
+						<td>
+							<div id="accTypeEdit">
+								<button class='waves-effect waves-light btn' style="margin-right:5px;" onclick="ChangeFields(3);"><i class=' material-icons'>edit</i></button>
+							</div>
+							<div id ="accTypeConfirm" hidden>
+								<table class="responsive-table">
+									<tr width>
+										<td>
+											<button class='waves-effect waves-light btn' style="margin-right:5px;"  onclick="ChangeFields(3);if(document.getElementById('selecttype').innerHTML == 'Admin') {EditAccount(true, 'admin')} else{EditAccount(false, 'admin')};"><i class=' material-icons'>done</i></button>
+										</td>
+										<td>
+											<button class='waves-effect waves-light btn' onclick="ChangeFields(3)"><i class=' material-icons'>cancel</i></button>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="modal-footer">
+				<a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="js/materialize.js"></script>
+		
+		<script type="text/javascript" src="js/settings.js"></script>
+
+		<script type="text/javascript" src="js/room.js"></script>
+
+	</body>
+
+</html>

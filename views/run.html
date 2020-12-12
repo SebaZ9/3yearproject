@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Run</title>
+  </head>
+  <body>
+    <script>
+     // for(year=2018; year<2020; year++){
+
+        var months = []
+        var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        var i;
+        var dayOfYear = 0;
+        for(i=0;i<4;i++) {
+            console.log(2020 + " : " + i)
+            var monthData = []
+            for(var d = 0; d < daysInMonth[i]; d++){
+                var powerProduced = 0;
+
+                powerProduced = (-32 * Math.cos(0.01721420632 * dayOfYear)+48)*(Math.random() * -Math.cos(0.01721420632*dayOfYear)+1)
+
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    }
+                };
+                xhttp.open("POST", "/solardata/2020/"+i+"/"+powerProduced, true);
+                xhttp.send();
+                console.log(powerProduced);
+
+                monthData.push(powerProduced)
+
+                dayOfYear++;
+            }
+            months.push(monthData)
+          }
+       // }
+    </script>
+  </body>
+</html>

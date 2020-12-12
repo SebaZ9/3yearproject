@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Sign-Up Form</title>
+  <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="css/sign.css">
+</head>
+<body>
+   
+  <div class="form">
+      
+    <ul class="top-area">
+      <h1 class="tab active">Create a new account</h1>
+    </ul>
+
+    <div id="signup">   
+      <div class="flex-exclude">
+        <img class="logo"  src="media/roost_white.png">
+      </div>
+          
+      <form action="/register" method="post">
+
+        <div class="top-row">
+          <div class="label-field">
+            <input name="fname" type="text" required autocomplete="off" placeholder="First Name"/>
+          </div>
+      
+          <div class="label-field">
+            <input name="lname" type="text"required autocomplete="off" placeholder="Last Name"/>
+          </div>
+        </div>
+
+        <div class="label-field">
+          <input name="username" type="username"required autocomplete="off" placeholder="Username"/>
+        </div>
+        
+        <div class="label-field">
+          <input name="password" type="password"required autocomplete="off" placeholder="Password"/>
+        </div>
+
+        <div class="label-field">
+          <input type="password"required autocomplete="off" placeholder="Re-enter Password"/>
+        </div>  
+        <button type="submit" class="button button-block">Get Started</button>  
+      </form>
+    </div>  
+  </div>
+</body>
+
+</html>
